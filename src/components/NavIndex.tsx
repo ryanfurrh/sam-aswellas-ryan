@@ -9,14 +9,6 @@ export const NavIndex: { items: Item[] }[] = [
   {
     items: [
       {
-        name: "Home",
-        slug: "/",
-      },
-    ],
-  },
-  {
-    items: [
-      {
         name: "Timeline",
         slug: "/timeline",
       },
@@ -25,16 +17,24 @@ export const NavIndex: { items: Item[] }[] = [
   {
     items: [
       {
-        name: "Studio",
-        slug: "/studio",
+        name: "Trips",
+        slug: "/trips",
       },
     ],
   },
   {
     items: [
       {
-        name: "Trips",
-        slug: "/trips",
+        name: "Stats",
+        slug: "/stats",
+      },
+    ],
+  },
+  {
+    items: [
+      {
+        name: "Studio",
+        slug: "/studio",
       },
     ],
   },
