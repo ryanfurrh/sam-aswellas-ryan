@@ -17,7 +17,8 @@ async function getMoments() {
       name,
       date,
       _id,
-      "imageUrl": image.asset->url
+      "imageUrl": image.asset->url,
+      
   }`;
   const data: Data[] = await client.fetch(query);
 
@@ -31,13 +32,17 @@ export default async function Page() {
       <div className="absolute w-full left-0">
         <BackHome />
       </div>
-      <div>
-        <h1 className="text-3xl font-bold">Timeline</h1>
+      <div className="h-full w-[1px] top-36 border border-green-600 border-dashed absolute -z-10"></div>
+      <div className="gap-8 flex flex-col">
+        <h1 className="text-3xl text-center font-bold">Timeline</h1>
 
         {data.length > 0 && (
-          <ul className="flex flex-col w-full">
+          <ul className="flex flex-col w-full gap-4">
             {data.map((moment) => (
-              <li key={moment._id} className="py-4 w-full">
+              <li
+                key={moment._id}
+                className="py-4 px-4 w-full border-green-900 rounded-md bg-black border"
+              >
                 <div className="flex flex-row w-full gap-4">
                   <div className="h-48 w-36 relative">
                     <Image
@@ -61,7 +66,7 @@ export default async function Page() {
       </div>
       <Link
         href={"/studio"}
-        className="border-white border px-4 py-2 rounded-sm"
+        className="border-white border px-4 py-2 rounded-sm bg-black"
       >
         + Add Moment
       </Link>
