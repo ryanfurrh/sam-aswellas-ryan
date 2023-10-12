@@ -112,7 +112,6 @@ export default function RelationshipCounter() {
           <div className="flex flex-col bg-blue-900/25 w-36 justify-center h-36 items-center rounded-full">
             <h1 className="mt-2 font-orbitron z-10 font-semibold text-cyan-600 text-2xl">
               {figure.percent} %
-              {/* <div className="bg-blue-950  w-20 h-20 absolute "></div> */}
             </h1>
             <h1 className="text-center text-xs text-cyan-800">{figure.text}</h1>
           </div>
