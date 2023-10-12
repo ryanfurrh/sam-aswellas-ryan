@@ -1,4 +1,5 @@
 "use client";
+import { concat } from "lodash";
 import { useEffect, useState } from "react";
 
 export default function RelationshipCounter() {
@@ -67,6 +68,7 @@ export default function RelationshipCounter() {
   }, []);
 
   const timePair = [
+    { number: concat("0" + years), timeScale: "Years" },
     { number: days, timeScale: "Days" },
     { number: hours, timeScale: "Hours" },
     { number: minutes, timeScale: "Minutes" },
