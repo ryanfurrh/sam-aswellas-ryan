@@ -5,11 +5,11 @@ export default function HomeNav() {
   return (
     <div>
       <nav className="grid grid-cols-1 items-center gap-4">
-        {NavIndex.map((page) => {
+        {NavIndex.map((page, index) => {
           return (
-            <div className="grid items-center ">
+            <div key={index} className="grid items-center ">
               {page.items.map((item) => (
-                <NavItem key={item.name} item={item} />
+                <NavItem key={item.slug} item={item} />
               ))}
             </div>
           );
