@@ -1,4 +1,5 @@
 "use client";
+import { concat } from "lodash";
 import { useEffect, useState } from "react";
 
 export default function RelationshipCounter() {
@@ -8,11 +9,17 @@ export default function RelationshipCounter() {
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
   const [anniversary, setAnniversary] = useState(0);
+  const [samPercentage, setSamPercentage] = useState(0);
+  const [ryanPercentage, setRyanPercentage] = useState(0);
   useEffect(() => {
+    const samTarget = new Date("02/03/1997");
+    const ryanTarget = new Date("04/30/1997");
     const target = new Date("11/05/2020 19:37:00");
     const interval = setInterval(() => {
       const now = new Date();
       const difference = now.getTime() - target.getTime();
+      const samDifference = now.getTime() - samTarget.getTime();
+      const ryanDifference = now.getTime() - ryanTarget.getTime();
       const y = Math.floor(difference / (1000 * 60 * 60 * 24) / 365);
       setYears(y);
       const d = Math.floor(difference / (1000 * 60 * 60 * 24) - y * 365);
@@ -25,21 +32,52 @@ export default function RelationshipCounter() {
       setMinutes(m);
       const s = Math.floor((difference % (1000 * 60)) / 1000);
       setSeconds(s);
+
+      // --- Anniversery percent calculation --- //
       const anni = parseFloat(
         (difference / (1000 * 60 * 60 * 24) / 365).toFixed(2)
       );
       setAnniversary(anni);
+
+      // --- Sam & Ryan life percentage calculation -- //
+      const sl = parseFloat(
+        (
+          (difference /
+            (1000 * 60 * 60 * 24) /
+            365 /
+            (samDifference / (1000 * 60 * 60 * 24) / 365)) *
+          100
+        ).toFixed(2)
+      );
+      Math;
+      setSamPercentage(sl);
+      const rl = parseFloat(
+        (
+          (difference /
+            (1000 * 60 * 60 * 24) /
+            365 /
+            (ryanDifference / (1000 * 60 * 60 * 24) / 365)) *
+          100
+        ).toFixed(2)
+      );
+      Math;
+      setRyanPercentage(rl);
     }, 1000);
 
     return () => clearInterval(interval);
   }, []);
 
   const timePair = [
-    { number: years, timeScale: "Years" },
+    { number: concat("0" + years), timeScale: "Years" },
     { number: days, timeScale: "Days" },
     { number: hours, timeScale: "Hours" },
     { number: minutes, timeScale: "Minutes" },
     { number: seconds, timeScale: "Seconds" },
+  ];
+
+  const lifePercentage = [
+    { percent: samPercentage, text: "of Sam's life" },
+    { percent: ryanPercentage, text: "of Ryan's life" },
   ];
 
   return (
@@ -68,6 +106,19 @@ export default function RelationshipCounter() {
             </div>
           ))}
         </div>
+      </div>
+      <div className="flex gap-12">
+        {lifePercentage.map((figure, index) => (
+          <div
+            key={index}
+            className="flex flex-col bg-blue-900/25 w-36 justify-center h-36 items-center rounded-full"
+          >
+            <h1 className="mt-2 font-orbitron z-10 font-semibold text-cyan-600 text-2xl">
+              {figure.percent} %
+            </h1>
+            <h1 className="text-center text-xs text-cyan-800">{figure.text}</h1>
+          </div>
+        ))}
       </div>
     </div>
   );
