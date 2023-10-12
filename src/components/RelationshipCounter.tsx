@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 
 export default function RelationshipCounter() {
+  const [years, setYears] = useState(0);
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
@@ -11,6 +12,10 @@ export default function RelationshipCounter() {
     const interval = setInterval(() => {
       const now = new Date();
       const difference = now.getTime() - target.getTime();
+      const y = Math.floor(difference / (1000 * 60 * 60 * 24) / 365);
+      setYears(y);
+      const d = Math.floor(difference / (1000 * 60 * 60 * 24) - y * 365);
+      setDays(d);
       const h = Math.floor(
         (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
       );
@@ -26,6 +31,7 @@ export default function RelationshipCounter() {
   }, []);
   return (
     <div>
+      <h1>{years} years</h1>
       <h1>{days} days</h1>
       <h1>{hours} hours</h1>
       <h1>{minutes} minutes</h1>
