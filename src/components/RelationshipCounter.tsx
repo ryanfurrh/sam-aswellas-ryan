@@ -109,7 +109,10 @@ export default function RelationshipCounter() {
       </div>
       <div className="flex gap-12">
         {lifePercentage.map((figure, index) => (
-          <div className="flex flex-col bg-blue-900/25 w-36 justify-center h-36 items-center rounded-full">
+          <div
+            key={index}
+            className="flex flex-col bg-blue-900/25 w-36 justify-center h-36 items-center rounded-full"
+          >
             <h1 className="mt-2 font-orbitron z-10 font-semibold text-cyan-600 text-2xl">
               {figure.percent} %
             </h1>
