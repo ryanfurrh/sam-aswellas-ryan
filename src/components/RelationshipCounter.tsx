@@ -55,7 +55,7 @@ export default function RelationshipCounter() {
         <h1 className="">anniversary &lt;3</h1>
       </div>
       <div className="items-center flex flex-col gap-4">
-        <h1>We've been dating for:</h1>
+        <h1>We&apos;ve been dating for:</h1>
         <div className="font-orbitron flex">
           {timePair.map((item, index) => (
             <div key={index} className="px-4 items-center flex flex-col gap-2">
