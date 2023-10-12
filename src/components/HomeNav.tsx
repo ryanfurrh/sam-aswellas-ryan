@@ -9,7 +9,7 @@ export default function HomeNav() {
           return (
             <div className="grid items-center ">
               {page.items.map((item) => (
-                <NavItem item={item} />
+                <NavItem key={item.name} item={item} />
               ))}
             </div>
           );
