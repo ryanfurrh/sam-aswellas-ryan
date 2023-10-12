@@ -52,7 +52,7 @@ export default function RelationshipCounter() {
           </h1>
           <h1 className="text-blue-500">year</h1>
         </div>
-        <h1 className="">anniversary {"<3"}</h1>
+        <h1 className="">anniversary &lt;3</h1>
       </div>
       <div className="items-center flex flex-col gap-4">
         <h1>We've been dating for:</h1>
