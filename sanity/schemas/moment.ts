@@ -1,7 +1,7 @@
 export default {
   name: "moment",
   type: "document",
-  title: "Moment",
+  title: "Moments",
   fields: [
     {
       title: "Name",
@@ -13,10 +13,15 @@ export default {
       name: "date",
       type: "date",
     },
+    { title: "Description", name: "description", type: "text" },
     {
       title: "Image",
       name: "image",
       type: "image",
-    }
+      options: {
+        hotspot: "true",
+        metadata: ["exif", "location"],
+      },
+    },
   ],
 };
