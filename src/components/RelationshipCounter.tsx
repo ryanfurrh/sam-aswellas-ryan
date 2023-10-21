@@ -1,4 +1,5 @@
 "use client";
+import _ from "lodash";
 import { concat } from "lodash";
 import { useEffect, useState } from "react";
 
@@ -82,41 +83,67 @@ export default function RelationshipCounter() {
 
   return (
     <div className="flex flex-col items-center gap-12">
-      <div className="flex flex-col items-center gap-4">
+      <div className="flex flex-col items-center gap-8">
         <h1>Today is our:</h1>
         <div className="flex items-baseline gap-2">
-          <h1 className=" text-blue-500 text-5xl font-orbitron">
+          <h1 className=" text-teal-500 text-5xl font-orbitron">
             {anniversary}
           </h1>
-          <h1 className="text-blue-500">year</h1>
+          <h1 className="text-teal-800">year</h1>
         </div>
         <h1 className="">anniversary &lt;3</h1>
       </div>
       <div className="items-center flex flex-col gap-4">
         <h1>We&apos;ve been dating for:</h1>
-        <div className="font-orbitron flex">
+        <div className="font-orbitron flex flex-col sm:flex-row gap-6">
           {timePair.map((item, index) => (
-            <div key={index} className="px-4 items-center flex flex-col gap-2">
-              <div className="border flex justify-center border-blue-900/50 py-1 px-4 w-24 text-blue-500 ">
-                <h1 className="text-3xl self-center text-center">
+            <div
+              key={index}
+              className="items-center flex flex-col border-teal-900/50 sm:w-36 overflow-hidden border rounded-md"
+            >
+              <div className="flex justify-center  py-2  w-52 sm:w-24  text-teal-500">
+                <h1 className="text-7xl sm:text-3xl self-center text-center">
                   {item.number}{" "}
                 </h1>
               </div>
-              <h1 className="text-xs">{item.timeScale}</h1>
+              <h1 className="text-base py-[2px] bg-teal-950 text-teal-600 w-52 text-center">
+                {item.timeScale}
+              </h1>
             </div>
           ))}
         </div>
       </div>
-      <div className="flex gap-12">
+      <div className="flex flex-col sm:flex-row gap-6 mt-8">
         {lifePercentage.map((figure, index) => (
           <div
             key={index}
-            className="flex flex-col bg-blue-900/25 w-36 justify-center h-36 items-center rounded-full"
+            className="flex flex-col relative bg-teal-900/25  overflow-hidden w-64 sm:w-48 justify-center h-40 items-center rounded-md"
           >
-            <h1 className="mt-2 font-orbitron z-10 font-semibold text-cyan-600 text-2xl">
-              {figure.percent} %
-            </h1>
-            <h1 className="text-center text-xs text-cyan-800">{figure.text}</h1>
+            <div className="flex absolute top-0 flex-col w-full gap-1">
+              <div className="bg-teal-400 flex w-full h-1"></div>
+              <div className="bg-teal-400 flex w-full h-1"></div>
+
+              <div className="bg-teal-900/20 flex w-full h-1"></div>
+              {[
+                ...Array(18)
+                  .fill(null)
+                  .map((_, index) => (
+                    <div key={index} className="bg-teal-900/20 flex w-full h-1">
+                      {" "}
+                    </div>
+                  )),
+              ]}
+
+              <div className="bg-teal-900/20 flex w-full h-1"></div>
+            </div>
+            <div className="flex flex-col gap-2 sm:gap-0 text-center">
+              <h1 className="mt-4 font-orbitron z-10 font-semibold text-teal-600 text-5xl sm:text-2xl">
+                {figure.percent} %
+              </h1>
+              <h1 className="text-center text-lg sm:text-xs text-teal-800">
+                {figure.text}
+              </h1>
+            </div>
           </div>
         ))}
       </div>
