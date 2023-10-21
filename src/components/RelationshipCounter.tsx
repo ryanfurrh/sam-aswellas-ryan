@@ -126,7 +126,7 @@ export default function RelationshipCounter() {
               <div className="bg-teal-900/20 flex w-full h-1"></div>
               {[
                 ...Array(18)
-                  .fill()
+                  .fill(null)
                   .map((_, index) => (
                     <div key={index} className="bg-teal-900/20 flex w-full h-1">
                       {" "}
