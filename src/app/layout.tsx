@@ -1,12 +1,19 @@
 import BackHome from "@/components/BackHome";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter, Orbitron } from "next/font/google";
+import { Inter, Orbitron, IBM_Plex_Mono } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 const orbitron = Orbitron({
   subsets: ["latin"],
   variable: "--font-orbitron",
+  display: "swap",
+});
+
+const plex = IBM_Plex_Mono({
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
+  subsets: ["latin"],
+  variable: "--font-plex",
   display: "swap",
 });
 
@@ -23,7 +30,7 @@ export default function RootLayout({
   params: { slug: string };
 }) {
   return (
-    <html lang="en" className={`${orbitron.variable}`}>
+    <html lang="en" className={`${orbitron.variable} ${plex.className}`}>
       <body className="">
         <div className="">{children}</div>
       </body>
