@@ -22,6 +22,15 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "sanity/schemas/index.js", "sanity/schemas/moment.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "sanity/schemas/index.js",
+    "sanity/schemas/moment.ts",
+    "sanity/deskStructure.js",
+    "sanity/schemas/siteSettings.ts"
+  ],
   "exclude": ["node_modules"]
 }
