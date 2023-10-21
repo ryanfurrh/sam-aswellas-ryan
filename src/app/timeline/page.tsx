@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { client } from "../../../sanity/lib/client";
 import BackHome from "@/components/BackHome";
+import Line from "@/components/Line";
 
 interface Data {
   title: string;
@@ -32,8 +33,8 @@ export default async function Page() {
       <div className="absolute w-full left-0">
         <BackHome />
       </div>
-      <div className="h-full w-[1px] top-36 border border-green-600 border-dashed absolute -z-10"></div>
       <div className="gap-8 flex flex-col">
+      <Line />
         <h1 className="text-3xl text-center font-bold">Timeline</h1>
 
         {data.length > 0 && (
