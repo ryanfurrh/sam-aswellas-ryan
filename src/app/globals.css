@@ -1,6 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer utilities {
+  .pixelated {
+    image-rendering: pixelated;
+  }
+  .luminosity {
+    mix-blend-mode: luminosity;
+  }
+  .difference {
+    mix-blend-mode: difference;
+  }
+  .hue {
+    mix-blend-mode: hue;
+  }
+}
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -14,14 +28,4 @@
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
 }
