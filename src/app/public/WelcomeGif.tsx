@@ -5,8 +5,9 @@ export default function WelcomeGif() {
     <Image
       src="https://web.archive.org/web/20091019202444if_/http://www.geocities.com/setyo79/pic/welcome.gif"
       alt="Welcome Gif with butterflies ♡"
-      width={300}
+      width={175}
       height={10}
+      className="difference"
     />
   );
 }
