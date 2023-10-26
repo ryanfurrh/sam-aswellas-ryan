@@ -19,6 +19,11 @@ export const NavIndex: { items: Item[] }[] = [
         name: "Timeline",
         slug: "/timeline",
         gif: <TimelineGif />,
+  {
+    items: [
+      {
+        name: "video vault",
+        slug: "/video-vault",
         gif: <VideoVaultGif />,
       },
     ],
