@@ -10,6 +10,7 @@ export type Item = {
   description?: string;
   icon?: any;
   gif?: any;
+  color?: string;
 };
 
 export const NavIndex: { items: Item[] }[] = [
@@ -19,12 +20,14 @@ export const NavIndex: { items: Item[] }[] = [
         name: "Timeline",
         slug: "/timeline",
         gif: <TimelineGif />,
+        color: "bg-aquamarine-400",
   {
     items: [
       {
         name: "video vault",
         slug: "/video-vault",
         gif: <VideoVaultGif />,
+        color: "bg-portage-400",
       },
     ],
   },
@@ -34,6 +37,7 @@ export const NavIndex: { items: Item[] }[] = [
         name: "Trips",
         slug: "/trips",
         gif: <TripsGif />,
+        color: "bg-lavender-400",
       },
     ],
   },
@@ -43,6 +47,7 @@ export const NavIndex: { items: Item[] }[] = [
         name: "Stats",
         slug: "/stats",
         gif: <StatsGif />,
+        color: "bg-neo-300",
       },
     ],
   },
@@ -52,6 +57,8 @@ export const NavIndex: { items: Item[] }[] = [
         name: "Studio",
         slug: "/studio",
         gif: <StudioGif />,
+        color: "bg-mako-900",
+        textcolor: "text-mako-300/90",
       },
     ],
   },
