@@ -30,8 +30,11 @@ export default function RootLayout({
   params: { slug: string };
 }) {
   return (
-    <html lang="en" className={`${orbitron.variable} ${plex.className}`}>
-      <body className="">
+    <html
+      lang="en"
+      className={`${orbitron.variable} ${plex.className} pixelated`}
+    >
+      <body className="bg-mako-950 text-mako-200">
         <div className="">{children}</div>
       </body>
     </html>
