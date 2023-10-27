@@ -2,6 +2,7 @@ import BackHome from "@/components/BackHome";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter, Orbitron, IBM_Plex_Mono } from "next/font/google";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 const orbitron = Orbitron({
@@ -34,8 +35,9 @@ export default function RootLayout({
       lang="en"
       className={`${orbitron.variable} ${plex.className} pixelated`}
     >
-      <body className="bg-mako-950 text-mako-200">
-        <div className="">{children}</div>
+      <body className="bg-black text-mako-200 flex flex-col min-h-screen justify-between">
+        <div className="bg-mako-950 ">{children}</div>
+        <Footer />
       </body>
     </html>
   );
