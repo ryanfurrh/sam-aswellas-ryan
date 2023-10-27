@@ -5,7 +5,8 @@ import siteSettings from "./schemas/siteSettings";
 import colors from "./schemas/colors";
 import mainNav from "./schemas/mainNav";
 import memory from "./schemas/memory";
+import event from "./schemas/event";
 
 export const schema = {
-  types: [moment, testing, siteSettings, colors, mainNav, memory],
+  types: [moment, testing, siteSettings, colors, mainNav, memory, event],
 };
