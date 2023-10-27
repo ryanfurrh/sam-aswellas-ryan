@@ -49,58 +49,61 @@ export default async function Page() {
     return 0;
   });
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24 w-full relative">
-      <div className="absolute w-full left-0">
-        <BackHome />
+    <main className="flex min-h-[calc(100vh-112px)] h-full flex-col items-center justify-between p-10 pt-16 w-full text-bermuda-300/80">
+      <div className="absolute left-0 top-9">
+        <BackHome color="" />
       </div>
-      <Line />
-      <div className="gap-8 flex flex-col pb-10">
-        <h1 className="text-3xl text-center font-bold">Timeline</h1>
+      <div className="gap-8 flex flex-col pb-10 items-center">
+        <div className="px-4 py-2 rounded-[4px] bg-bermuda-300 w-fit">
+          <h1 className="text-xl text-center font-medium text-mako-950">
+            photo gallery
+          </h1>
+        </div>
+        <h2>timeline</h2>
+        <div className="relative flex h-full">
+          <Line />
+          {data.length > 0 && (
+            <ul className="flex flex-wrap items-center w-full justify-center gap-8 z-10">
+              {data.map((moment) => (
+                <li key={moment._id} className="">
+                  <div className="flex flex-col h-fit items-center gap-2">
+                    <div className="flex flex-col border-bermuda-500 rounded-[4px] overflow-clip bg-black border h-fit">
+                      <Image
+                        src={moment.url}
+                        height={Math.round(moment.height / 3.5)}
+                        width={Math.round(moment.width / 3.5)}
+                        alt="Moment Image"
+                        className="w-auto h-auto"
+                      />
+                      <h1 key={moment._id}>{moment.description}</h1>
+                    </div>
 
-        {data.length > 0 && (
-          <ul className="flex flex-wrap w-full justify-center gap-4">
-            {data.map((moment) => (
-              <li
-                key={moment._id}
-                className="py-4 px-4 flex border-green-900 rounded-md bg-black border"
-              >
-                <div className="flex flex-col gap-4 h-auto">
-                  <Image
-                    objectFit="contain"
-                    src={moment.url}
-                    height={`${moment.height / 4}`}
-                    width={`${moment.width / 4}`}
-                    alt="Moment Image"
-                  />
-
-                  <div className="flex flex-col gap-2">
-                    <h1 key={moment._id}>{moment.description}</h1>
-                    <div className=" w-auto flex flex-col">
-                      <div className="flex gap-2 bg-green-950/70 py-1 px-2">
+                    <div className=" w-fit rounded-[4px] flex flex-col gap-1 items-center">
+                      <div className="flex gap-2 bg-bermuda-950 rounded-sm py-1 px-2">
                         <CalendarBlank width={9} />
-                        <h3 className=" rounded-sm text-white/50 text-[9px]">
+                        <h3 className=" text-bermuda-500 text-[9px]">
                           {moment.date}
                         </h3>
                       </div>
                       {moment.tags ? (
-                        <div className="flex items-center py-1 px-2 rounded-sm gap-2">
+                        <div className="w-fit flex gap-2 bg-bermuda-950 rounded-sm py-1 px-2">
                           <MapPin width={9} />
-                          <h1 className=" text-white/50 text-[10px]">
+                          <h1 className=" text-bermuda-500 text-[9px]">
                             {moment.tags}
                           </h1>
                         </div>
                       ) : null}
                     </div>
                   </div>
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
       <Link
         href={"/studio"}
-        className="border-white border px-4 py-2 rounded-sm bg-black"
+        className="border-bermuda-400 border px-8 py-2 rounded-[4px]"
       >
         + Add Moment
       </Link>
