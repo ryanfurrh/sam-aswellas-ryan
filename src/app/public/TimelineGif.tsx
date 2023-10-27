@@ -7,7 +7,7 @@ export default function TimelineGif() {
       alt="flower photo frame"
       width={55}
       height={75}
-      className="luminosity opacity-[85%]"
+      className="luminosity opacity-[85%] py-1"
     />
   );
 }

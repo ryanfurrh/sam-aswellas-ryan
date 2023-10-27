@@ -7,7 +7,7 @@ export default function StudioGif() {
       alt="Welcome Gif with butterflies ♡"
       width={100}
       height={75}
-      className="luminosity opacity-80"
+      className="luminosity opacity-80 py-2"
     />
   );
 }

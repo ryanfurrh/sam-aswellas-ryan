@@ -7,7 +7,7 @@ export default function StatsGif() {
       alt="chart moving up as well as down"
       width={65}
       height={75}
-      className="luminosity opacity-70"
+      className="luminosity opacity-70 py-2"
     />
   );
 }

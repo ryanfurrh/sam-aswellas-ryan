@@ -7,7 +7,7 @@ export default function TimelineGif() {
       alt="spinning globe"
       width={45}
       height={55}
-      className="luminosity opacity-[85%] py-3"
+      className="luminosity opacity-[85%] py-2"
     />
   );
 }
