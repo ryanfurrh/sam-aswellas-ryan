@@ -82,65 +82,70 @@ export default function RelationshipCounter() {
   ];
 
   return (
-    <div className="flex flex-col items-center gap-12">
-      <div className="flex flex-col items-center gap-8">
+    <div className="flex flex-col items-center gap-8 ">
+      {/* ------------------------ ANNIVERSARY COUNTER ------------------------ */}
+
+      <div className="flex flex-col items-center gap-4">
         <h1>Today is our:</h1>
-        <div className="flex items-baseline gap-2">
-          <h1 className=" text-teal-500 text-5xl font-orbitron">
+        <div className="items-baseline gap-4 flex">
+          <h1 className=" text-neo-400 border border-neo-300 rounded-[4px] px-12 py-4 text-5xl font-orbitron relative flex flex-col text-center">
             {anniversary}
+            <span className="text-neo-600 text-base">year</span>
           </h1>
-          <h1 className="text-teal-800">year</h1>
         </div>
         <h1 className="">anniversary &lt;3</h1>
       </div>
+
+      {/* ------------------------ RELATIONSHIP CLOCK ------------------------ */}
+
       <div className="items-center flex flex-col gap-4">
         <h1>We&apos;ve been dating for:</h1>
-        <div className="font-orbitron flex flex-col sm:flex-row gap-6">
+        <div className="font-orbitron flex gap-0 rounded-[4px] border border-neo-300 overflow-hidden">
           {timePair.map((item, index) => (
             <div
               key={index}
-              className="items-center flex flex-col border-teal-900/50 sm:w-36 overflow-hidden border rounded-md"
+              className="items-center flex flex-col border-neo-900 border-r-0 first:border-l-0 overflow-hidden border"
             >
-              <div className="flex justify-center  py-2  w-52 sm:w-24  text-teal-500">
-                <h1 className="text-7xl sm:text-3xl self-center text-center">
+              <div className="flex justify-center  py-2  w-2 sm:w-24  text-neo-300">
+                <h1 className="text-base sm:text-3xl self-center text-center">
                   {item.number}{" "}
                 </h1>
               </div>
-              <h1 className="text-base py-[2px] bg-teal-950 text-teal-600 w-52 text-center">
+              <h1 className="text-[8px] py-[2px] bg-neo-950 text-neo-400 w-14 text-center">
                 {item.timeScale}
               </h1>
             </div>
           ))}
         </div>
       </div>
-      <div className="flex flex-col sm:flex-row gap-6 mt-8">
+
+      {/* ------------------------ LIFE PERCENTAGE ------------------------ */}
+
+      <div className="flex sm:flex-row gap-3 mt-4 sm:mt-8">
         {lifePercentage.map((figure, index) => (
           <div
             key={index}
-            className="flex flex-col relative bg-teal-900/25  overflow-hidden w-64 sm:w-48 justify-center h-40 items-center rounded-md"
+            className="flex relative bg-neo-900/25 px-4 overflow-hidden w-36 sm:w-48 justify-center items-center rounded-[4px] border border-neo-300"
           >
-            <div className="flex absolute top-0 flex-col w-full gap-1">
-              <div className="bg-teal-400 flex w-full h-1"></div>
-              <div className="bg-teal-400 flex w-full h-1"></div>
-
-              <div className="bg-teal-900/20 flex w-full h-1"></div>
+            <div className="flex absolute top-0 flex-col w-full gap-[1px]">
+              <div className="bg-neo-900/20 flex w-full h-1 items-end"></div>
               {[
                 ...Array(18)
                   .fill(null)
                   .map((_, index) => (
-                    <div key={index} className="bg-teal-900/20 flex w-full h-1">
+                    <div key={index} className="bg-neo-900/20 flex w-full h-1">
                       {" "}
                     </div>
                   )),
               ]}
-
-              <div className="bg-teal-900/20 flex w-full h-1"></div>
+              <div className="bg-neo-400 flex w-full h-1"></div>
+              <div className="bg-neo-400 flex w-full h-1"></div>
             </div>
-            <div className="flex flex-col gap-2 sm:gap-0 text-center">
-              <h1 className="mt-4 font-orbitron z-10 font-semibold text-teal-600 text-5xl sm:text-2xl">
+            <div className="flex flex-col gap-0 text-center pt-5 pb-9">
+              <h1 className=" font-orbitron z-10 font-medium w-auto text-neo-300 text-2xl">
                 {figure.percent} %
               </h1>
-              <h1 className="text-center text-lg sm:text-xs text-teal-800">
+              <h1 className="text-center text-xs text-neo-600">
                 {figure.text}
               </h1>
             </div>
