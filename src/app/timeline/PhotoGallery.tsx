@@ -27,7 +27,8 @@ async function getMoments() {
     "tags": opt.media.tags[]->name.current,
   }`;
   const data: Data[] = await client.fetch(query, {
-    cache: "no-store",
+    next: { revalidate: 10 },
+    cache: "no-cache",
   });
 
   data.forEach((moment) => {
