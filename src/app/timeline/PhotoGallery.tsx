@@ -2,6 +2,7 @@ import Image from "next/image";
 import { CalendarBlank, MapPin } from "@phosphor-icons/react/dist/ssr/index";
 import { format, parseISO } from "date-fns";
 import { client } from "../../../sanity/lib/client";
+import { cache } from "react";
 
 interface Data {
   _id: string;
@@ -14,7 +15,7 @@ interface Data {
   tags?: string;
 }
 
-async function getServerSideProps() {
+async function getMoments() {
   const query = `*[_type == "sanity.imageAsset"] {
     _id,
     url,
@@ -25,7 +26,9 @@ async function getServerSideProps() {
     'date':  metadata.exif.DateTimeOriginal,
     "tags": opt.media.tags[]->name.current,
   }`;
-  const data: Data[] = await client.fetch(query, { next: { revalidate: 1 } });
+  const data: Data[] = await client.fetch(query, {
+    cache: "no-store",
+  });
 
   data.forEach((moment) => {
     if (moment.date) {
@@ -37,7 +40,7 @@ async function getServerSideProps() {
 }
 
 export default async function PhotoGallery() {
-  const data = (await getServerSideProps()) as Data[];
+  const data = (await getMoments()) as Data[];
   data.sort((a, b) => {
     if (a.date && b.date) {
       return (new Date(a.date) as any) - (new Date(b.date) as any);
@@ -45,7 +48,7 @@ export default async function PhotoGallery() {
     return 0;
   });
   return (
-    <div>
+    <div className="z-10">
       {data.length > 0 && (
         <ul className="flex flex-wrap items-center w-full justify-center gap-8 z-10">
           {data.map((moment) => (
