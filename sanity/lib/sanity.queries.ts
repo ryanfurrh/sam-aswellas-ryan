@@ -10,3 +10,12 @@ export const mediaBrowserQuery = groq`*[_type == "sanity.imageAsset"] {
     'date':  metadata.exif.DateTimeOriginal,
     "tags": opt.media.tags[]->name.current,
   }`;
+
+export const eventQuery = groq`*[_type == "event"] {
+  _id,
+  title,
+  date,
+  'icon1': icon1.name,
+  'icon2': icon2.name,
+  'eventLocation': string,
+}`;
