@@ -1,91 +1,101 @@
+"use client";
 import Image from "next/image";
 import { CalendarBlank, MapPin } from "@phosphor-icons/react/dist/ssr/index";
 import { format, parseISO } from "date-fns";
-import { client } from "../../../sanity/lib/client";
-import { cache } from "react";
+import DropdownSelector from "@/components/DropdownSelector";
+import { useState } from "react";
+import { Icon } from "@iconify/react";
 
-interface Data {
+type Moment = {
   _id: string;
-  url: string;
+  date: string;
+  url?: string;
+  description?: string;
+  tags?: string;
   height: number;
   width: number;
-  description?: string;
-  title?: string;
-  date?: string;
-  tags?: string;
-}
+};
 
-async function getMoments() {
-  const query = `*[_type == "sanity.imageAsset"] {
-    _id,
-    url,
-    'height': metadata.dimensions.height,
-    'width': metadata.dimensions.width,
-    description,
-    title,
-    'date':  metadata.exif.DateTimeOriginal,
-    "tags": opt.media.tags[]->name.current,
-  }`;
-  const data: Data[] = await client.fetch(query, {
-    next: { revalidate: 10 },
-    cache: "no-cache",
-  });
 
-  data.forEach((moment) => {
+type Props = {
+  data: Moment[];
+};
+
+export default function PhotoGallery({ data, eventData }: Props) {
+  const groupedData: {
+    [data: string]: { moments: Moment[]; events: Event[] };
+
+  data.forEach((moment: { date: any }) => {
     if (moment.date) {
-      moment.date = format(parseISO(moment.date), "MMMM dd, yyyy");
+      const formattedDate = format(parseISO(moment.date), "MMMM yyyy");
+      if (!groupedData[formattedDate]) {
+        groupedData[formattedDate] = { moments: [], events: [] };
+      }
+      groupedData[formattedDate].moments.push(moment as Moment);
     }
   });
 
-  return data;
-}
 
-export default async function PhotoGallery() {
-  const data = (await getMoments()) as Data[];
-  data.sort((a, b) => {
-    if (a.date && b.date) {
-      return (new Date(a.date) as any) - (new Date(b.date) as any);
+  const sortedMonths = Object.keys(groupedData).sort((a, b) => {
+    if (selectedFilter) {
+      return +new Date(b) - +new Date(a);
+    } else {
+      return +new Date(a) - +new Date(b);
     }
-    return 0;
   });
+
+  sortedMonths.forEach((month) => {
+    groupedData[month].moments.sort((a, b) => {
+      if (selectedFilter) {
+        return +new Date(b.date) - +new Date(a.date);
+      } else {
+        return +new Date(a.date) - +new Date(b.date);
+      }
+    });
+  });
+
   return (
-    <div className="z-10">
-      {data.length > 0 && (
-        <ul className="flex flex-wrap items-center w-full justify-center gap-8 z-10">
-          {data.map((moment) => (
-            <li key={moment._id} className="">
-              <div className="flex flex-col h-fit items-center gap-2">
-                <div className="flex flex-col border-bermuda-500 rounded-[4px] overflow-clip bg-black border h-fit">
-                  <Image
-                    src={moment.url}
-                    height={Math.round(moment.height / 3.5)}
-                    width={Math.round(moment.width / 3.5)}
-                    alt="Moment Image"
-                    className="w-auto h-auto"
-                  />
-                  <h1 key={moment._id}>{moment.description}</h1>
-                </div>
 
-                <div className=" w-fit rounded-[4px] flex flex-col gap-1 items-center">
-                  <div className="flex gap-2 bg-bermuda-950 rounded-sm py-1 px-2">
-                    <CalendarBlank width={9} />
-                    <h3 className=" text-bermuda-500 text-[9px]">
-                      {moment.date}
-                    </h3>
-                  </div>
-                  {moment.tags ? (
-                    <div className="w-fit flex gap-2 bg-bermuda-950 rounded-sm py-1 px-2">
-                      <MapPin width={9} />
-                      <h1 className=" text-bermuda-500 text-[9px]">
-                        {moment.tags}
-                      </h1>
-                    </div>
-                  ) : null}
                 </div>
               </div>
-            </li>
+              <ul className="z-10 flex flex-col items-center justify-center w-full gap-8">
+                {groupedData[month].moments.map((moment: any) => (
+                  <li key={moment._id} className="">
+                    <div className="flex flex-col items-center gap-2 h-fit">
+                      <div className="flex flex-col border-bermuda-500 rounded-[4px] overflow-clip bg-black border h-fit sm:relative">
+                        <Image
+                          src={moment.url}
+                          height={Math.round(moment.height / 3.5)}
+                          width={Math.round(moment.width / 3.5)}
+                          alt="Moment Image"
+                          className="w-auto h-auto"
+                        />
+                        <h1 key={moment._id}>{moment.description}</h1>
+                      </div>
+
+                      <div className=" w-fit rounded-[4px] flex flex-col gap-1 items-center sm:absolute sm:-right-24 sm:items-start">
+                        <div className="flex gap-2 px-2 py-1 rounded-sm bg-bermuda-950">
+                          <CalendarBlank width={9} />
+                          <h3 className=" text-bermuda-500 text-[9px]">
+                            {format(parseISO(moment.date), "MM/dd/yy")}
+                          </h3>
+                        </div>
+                        {moment.tags ? (
+                          <div className="flex gap-2 px-2 py-1 rounded-sm w-fit bg-bermuda-950">
+                            <MapPin width={9} />
+                            <h1 className=" text-bermuda-500 text-[9px]">
+                              {moment.tags}
+                            </h1>
+                          </div>
+                        ) : null}
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );
