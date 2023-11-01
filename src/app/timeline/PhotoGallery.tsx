@@ -16,9 +16,18 @@ type Moment = {
   width: number;
 };
 
+type Event = {
+  _id: string;
+  title: string;
+  date: string;
+  icon1: string;
+  icon2?: string;
+  eventLocation: string;
+};
 
 type Props = {
   data: Moment[];
+  eventData: Event[];
 };
 
 export default function PhotoGallery({ data, eventData }: Props) {
@@ -80,6 +89,26 @@ export default function PhotoGallery({ data, eventData }: Props) {
                     {month}
                   </h2>
                 </div>
+              </div>
+              <div>
+                {groupedData[month].events.map((event: any) => (
+                  <div key={event._id}>
+                    <div className="px-8 py-4 bg-portage-300 rounded-[4px] flex flex-col gap-2">
+                      <div className="flex flex-row justify-center gap-0.5 text-mako-950">
+                        <Icon icon={event.icon1} />
+                        <Icon icon={event.icon2} />
+                      </div>
+                      <div className="flex flex-col text-center gap-[-2px]">
+                        <h1 className="text-sm font-semibold text-mako-950">
+                          {event.title}
+                        </h1>
+                        <h1 className="text-[10px] text-portage-900 -mt-0.25">
+                          {format(parseISO(event.date), "MMMM dd, yyyy")}
+                        </h1>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
               <ul className="z-10 flex flex-col items-center justify-center w-full gap-8">
                 {groupedData[month].moments.map((moment: any) => (
