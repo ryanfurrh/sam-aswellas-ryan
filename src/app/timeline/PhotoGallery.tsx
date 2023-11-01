@@ -22,8 +22,10 @@ type Props = {
 };
 
 export default function PhotoGallery({ data, eventData }: Props) {
+  const [selectedFilter, setSelectedFilter] = useState(false);
   const groupedData: {
     [data: string]: { moments: Moment[]; events: Event[] };
+  } = {};
 
   data.forEach((moment: { date: any }) => {
     if (moment.date) {
@@ -62,6 +64,10 @@ export default function PhotoGallery({ data, eventData }: Props) {
   });
 
   return (
+    <div className="relative z-10">
+      <div>
+        <DropdownSelector setSelectedFilter={setSelectedFilter} />
+      </div>
 
       {sortedMonths.length > 0 && (
         <div className="z-10 flex flex-col items-center gap-12">
