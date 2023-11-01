@@ -25,9 +25,6 @@ export const myStructure = (S) =>
                 .child(S.document().schemaType("colors").documentId("colors")),
             ])
         ),
-      // S.listItem()
-      //   .title("Memory Items")
-      //   .items([S.listItem().title("memory").child()]),
 
       ...S.documentTypeListItems().filter(
         (listItem) =>
