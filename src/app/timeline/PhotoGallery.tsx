@@ -35,6 +35,13 @@ export default function PhotoGallery({ data, eventData }: Props) {
     }
   });
 
+  eventData.forEach((event: { date: any }) => {
+    const formattedDate = format(parseISO(event.date), "MMMM yyy");
+    if (!groupedData[formattedDate]) {
+      groupedData[formattedDate] = { moments: [], events: [] };
+    }
+    groupedData[formattedDate].events.push(event as Event);
+  });
 
   const sortedMonths = Object.keys(groupedData).sort((a, b) => {
     if (selectedFilter) {
@@ -56,6 +63,16 @@ export default function PhotoGallery({ data, eventData }: Props) {
 
   return (
 
+      {sortedMonths.length > 0 && (
+        <div className="z-10 flex flex-col items-center gap-12">
+          {sortedMonths.map((month) => (
+            <div key={month} className="">
+              <div className="flex justify-center w-full pb-8">
+                <div className="bg-bermuda-300 justify-center px-4 py-2 w-fit rounded-[4px] text-center flex flex-col items-center">
+                  <CalendarBlank className="fill-mako-950" width={12} />
+                  <h2 className="text-xs font-semibold text-mako-950">
+                    {month}
+                  </h2>
                 </div>
               </div>
               <ul className="z-10 flex flex-col items-center justify-center w-full gap-8">
