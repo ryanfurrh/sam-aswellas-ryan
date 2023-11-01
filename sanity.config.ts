@@ -2,6 +2,8 @@
  * This configuration is used to for the Sanity Studio that’s mounted on the `/app/studio/[[...index]]/page.tsx` route
  */
 import { media, mediaAssetSource } from "sanity-plugin-media";
+import { iconify } from "sanity-plugin-iconify";
+import { iconPicker } from "sanity-plugin-icon-picker";
 import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
 import { deskTool } from "sanity/desk";
@@ -18,6 +20,21 @@ export default defineConfig({
   // Add and edit the content schema in the './sanity/schema' folder
   schema,
   plugins: [
+    iconify({
+      collections: [
+        "ph",
+        "fluent-emoji-high-contrast",
+        "fa-solid",
+        "heroicons-outline",
+        "tabler",
+        "mingcute",
+        "lucide",
+        "ri",
+        "uil",
+      ],
+      showName: true,
+    }),
+    iconPicker(),
     deskTool({
       structure: myStructure,
     }),
