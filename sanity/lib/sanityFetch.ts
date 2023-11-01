@@ -12,7 +12,7 @@ export const token = process.env.SANITY_API_READ_TOKEN;
 export async function sanityFetch<QueryResponse>({
   query,
   params = DEFAULT_PARAMS,
-  cache = "force-cache",
+  cache = "no-store",
   tags = DEFAULT_TAGS,
 }: {
   query: string;
@@ -35,7 +35,7 @@ export async function sanityFetch<QueryResponse>({
       perspective: "previewDrafts",
     }),
     next: {
-      ...(isDraftMode && { revalidate: 30 }),
+      ...(isDraftMode && { revalidate: 10 }),
       tags,
     },
   });
