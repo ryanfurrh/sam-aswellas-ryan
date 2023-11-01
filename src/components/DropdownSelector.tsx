@@ -77,6 +77,26 @@ export default function DropdownSelector({
           </button>
         </div>
 
+        <div className="border border-bermuda-300 rounded-[4px] overflow-hidden z-20 bg-mako-950">
+          <Link
+            href={"/studio/media"}
+            className="flex flex-row items-center gap-2 pt-3 pb-2 pl-4 pr-2 border-b hover:bg-bermuda-950/70 border-bermuda-950"
+          >
+            <span>
+              <Image width={14} />
+            </span>
+            Add Image
+          </Link>
+          <Link
+            href={"/studio/desk/event"}
+            className="flex flex-row items-center gap-2 pt-2 pb-3 pl-4 pr-2 hover:bg-bermuda-950/70"
+          >
+            <span>
+              <Confetti width={14} />
+            </span>
+            Add event
+          </Link>
+        </div>
       </div>
     </div>
   );
